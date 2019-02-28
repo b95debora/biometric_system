@@ -19,10 +19,10 @@ GENDER = ["male", "female"]
 RACE = ["white", "black", "asian", "indian", "others"]
 #numer of images for each class
 NUMB_IMAGES = 5000
-IMG_SIZE = 224 #image size for cnn
-TRAINING_ONECLASS_SIZE = 130
-VALIDAZION_ONECLASS_SIZE = 30
-TEST_ONECLASS_SIZE = 70
+IMG_SIZE = 300 #image size for cnn
+TRAINING_ONECLASS_SIZE = 260
+VALIDAZION_ONECLASS_SIZE = 60
+TEST_ONECLASS_SIZE = 140
 
 #create a 3-dimensional array: age_row, race_column, gender_depth, and each matrix element rapresents the images samples. 
 #for istance: M[0,0,0] is the name list of images with AGE[0], RACE [0], GENDER[0]

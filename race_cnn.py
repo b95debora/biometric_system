@@ -11,9 +11,9 @@ from keras.utils import np_utils
 from keras_vggface.vggface import VGGFace
 import pickle
 
-training_data, validation_data, test_data = create_train_validation_test("gender")
+training_data, validation_data, test_data = create_train_validation_test("race")
 
-num_classes = 2
+num_classes = 5
 epochs = 3
 IMG_SIZE = 300
 
@@ -50,11 +50,11 @@ x_test = np.array(x_test).reshape(-3, IMG_SIZE, IMG_SIZE, 3)
 x_test = x_test/255.0
 y_test = np_utils.to_categorical(y_test, num_classes)
 
-pickle_out = open("x_test_gender.pickle","wb")
+pickle_out = open("x_test_race.pickle","wb")
 pickle.dump(x_test, pickle_out)
 pickle_out.close()
 
-pickle_out = open("y_test_gender.pickle","wb")
+pickle_out = open("y_test_race.pickle","wb")
 pickle.dump(y_test, pickle_out)
 pickle_out.close()
 
@@ -122,5 +122,5 @@ plt.legend()
 plt.show()
 
 #salvo il modello
-model.save('gender.model')
+model.save('race.model')
 
