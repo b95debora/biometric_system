@@ -205,6 +205,9 @@ def split_into_training_validation_test_set_age():
 #input: the supercategory for which you want create the sets, must be gender, race or age
 #outut: sets of images and labels
 def create_train_validation_test(supercategory):
+	part1 = "datasetsistemibiometrici\\"
+	folders = [part1]
+	organized_dataset(folders)
 	training_data = []
 	validation_data = []
 	test_data = []
