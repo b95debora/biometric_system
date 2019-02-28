@@ -19,7 +19,10 @@ GENDER = ["male", "female"]
 RACE = ["white", "black", "asian", "indian", "others"]
 #numer of images for each class
 NUMB_IMAGES = 5000
-IMG_SIZE = 300 #image size for cnn
+IMG_SIZE = 224 #image size for cnn
+TRAINING_ONECLASS_SIZE = 130
+VALIDAZION_ONECLASS_SIZE = 30
+TEST_ONECLASS_SIZE = 70
 
 #create a 3-dimensional array: age_row, race_column, gender_depth, and each matrix element rapresents the images samples. 
 #for istance: M[0,0,0] is the name list of images with AGE[0], RACE [0], GENDER[0]
@@ -86,9 +89,9 @@ def print_lists(multidimensional_array):
 
 #return three list of images names for training validation and test of a gender cnn, that list are balanced considering both age, gender and race
 def split_into_training_validation_test_set_gender():
-	training_size_for_one_class = 130
-	validation_size_for_one_class = 30
-	test_size_for_one_class = 70
+	training_size_for_one_class = TRAINING_ONECLASS_SIZE
+	validation_size_for_one_class = VALIDAZION_ONECLASS_SIZE
+	test_size_for_one_class = TEST_ONECLASS_SIZE
 	classnumber = 2
 	current_training_size = 0
 	current_validation_size = 0
@@ -125,9 +128,9 @@ def split_into_training_validation_test_set_gender():
 
 #return three list of images names for training validation and test of a race cnn, that list are balanced considering both age, gender and race
 def split_into_training_validation_test_set_race():
-	training_size_for_one_class = 130
-	validation_size_for_one_class = 30
-	test_size_for_one_class = 70
+	training_size_for_one_class = TRAINING_ONECLASS_SIZE
+	validation_size_for_one_class = VALIDAZION_ONECLASS_SIZE
+	test_size_for_one_class = TEST_ONECLASS_SIZE
 	classnumber = 5
 	current_training_size = 0
 	current_validation_size = 0
@@ -164,9 +167,9 @@ def split_into_training_validation_test_set_race():
 
 #return three list of images names for training validation and test of a age cnn, that list are balanced considering both age, gender and race
 def split_into_training_validation_test_set_age():
-	training_size_for_one_class = 130
-	validation_size_for_one_class = 30
-	test_size_for_one_class = 70
+	training_size_for_one_class = TRAINING_ONECLASS_SIZE
+	validation_size_for_one_class = VALIDAZION_ONECLASS_SIZE
+	test_size_for_one_class = TEST_ONECLASS_SIZE
 	classnumber = 9
 	current_training_size = 0
 	current_validation_size = 0
@@ -222,7 +225,14 @@ def create_train_validation_test(supercategory):
 	# create train
 	for imagepath in trainnames:
 		temp = parse_path(imagepath)
-		class_num = int(temp[1])
+		if(supercategory=="gender"):
+			class_num = int(temp[1])
+		elif(supercategory=="race"):
+			class_num = int(temp[2])
+		elif(supercategory=="age"):
+			class_num = int(temp[0])
+		else:
+			print("error no such supercategory defined or errate supercategory")
 		try:
 			img_array = cv2.imread(imagepath, cv2.IMREAD_COLOR)
 			new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
@@ -232,7 +242,14 @@ def create_train_validation_test(supercategory):
 	#create validation
 	for imagepath in validationnames:
 		temp = parse_path(imagepath)
-		class_num = int(temp[1])
+		if(supercategory=="gender"):
+			class_num = int(temp[1])
+		elif(supercategory=="race"):
+			class_num = int(temp[2])
+		elif(supercategory=="age"):
+			class_num = int(temp[0])
+		else:
+			print("error no such supercategory defined or errate supercategory")
 		try:
 			img_array = cv2.imread(imagepath, cv2.IMREAD_COLOR)
 			new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
@@ -242,7 +259,14 @@ def create_train_validation_test(supercategory):
 	#create test
 	for imagepath in testnames:
 		temp = parse_path(imagepath)
-		class_num = int(temp[1])
+		if(supercategory=="gender"):
+			class_num = int(temp[1])
+		elif(supercategory=="race"):
+			class_num = int(temp[2])
+		elif(supercategory=="age"):
+			class_num = int(temp[0])
+		else:
+			print("error no such supercategory defined or errate supercategory")
 		try:
 			img_array = cv2.imread(imagepath, cv2.IMREAD_COLOR)
 			new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))

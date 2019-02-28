@@ -14,8 +14,8 @@ import pickle
 training_data, validation_data, test_data = create_train_validation_test("gender")
 
 num_classes = 2
-epochs = 5
-IMG_SIZE = 300
+epochs = 3
+IMG_SIZE = 224
 
 x_train = []
 y_train = []
